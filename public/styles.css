@@ -1,0 +1,10 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+      
+}
+body > div{
+    
+    padding: 2rem;
+    margin-bottom: 5rem;
+}
+  
