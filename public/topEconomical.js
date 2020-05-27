@@ -1,12 +1,12 @@
 
-function showData1(){
-    function fetchAndVisualizeData() {
+
+  function fetchAndVisualizeData() {
       fetch("./data.json")
         .then(r => r.json())
         .then(visualizeData_dynamic1);
     } 
     fetchAndVisualizeData();
-    
+    /*
     function visualizeData_dynamic1(data) {
     
     const season = document.getElementById("seasons2").value;
@@ -17,18 +17,27 @@ function showData1(){
     
     return;
   }
+*/
+function showData1(){
   
+ const year = parent(document.getElementById("seasons2").value);
+  
+ const result = await (await fetch(`https://arcane-wildwood-32573.herokuapp.com/economy?year=${year}`)).json();
+ visualizetopEconomicalBowlers(result,year);
+
+
   }
   
-  function visualizetopEconomicalBowlers(topEconomicalBowlers) {
-    const season = document.getElementById("seasons2").value;
+  function visualizetopEconomicalBowlers(result,year) {
+    //const season = document.getElementById("seasons2").value;
     //console.log(topEconomicalBowlers);
+    console.log(result);
     Highcharts.chart("top_economical _bowlers", {
       chart: {
         type: "column"
       },
       title: {
-        text: `<b>D. Top Economical Bowlers in ${season} season</b>`
+        text: `<b>D. Top Economical Bowlers in ${year} season</b>`
       },
       subtitle: {
         text:
@@ -46,7 +55,7 @@ function showData1(){
       series: [
         {
           name: "Players",
-          data: topEconomicalBowlers
+          data: result
         }
       ]
     });

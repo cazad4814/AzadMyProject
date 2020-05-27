@@ -1,6 +1,7 @@
 function extraRunByeachteam(deliveries,matches) {
-   
-  let id=matches.filter(a=>(a.season)==2016).map(a=>a.id);
+  let res={};
+   for(let k=2008;k<=2019;k++){
+  let id=matches.filter(a=>(a.season)==Number(k)).map(a=>a.id);
   
   let team;
   team=(deliveries.filter(a=>(a.match_id)>=Number(id[0]) && (a.match_id)<=Number(id[id.length-1]) && (a.extra_runs)>0)
@@ -9,15 +10,6 @@ function extraRunByeachteam(deliveries,matches) {
   .map(a=>a.extra_runs));
   var uniqueArray = [...new Set(team)]
 
-/*
-  let tt=matches.filter(a=>(a.season)==2016);
-  let name=tt.map(a=>(a.team1));
-  let name1=tt.map(a=>(a.team2));
-  const returnedTarget = Object.assign(name, name1);
-  var uniqueArray = [...new Set(returnedTarget)]
-  
-
- */
   let r={};
   for(let j=0;j<uniqueArray.length;j++){
     let t=uniqueArray[j].split(" ");
@@ -31,8 +23,10 @@ function extraRunByeachteam(deliveries,matches) {
   }
   r[uniqueArray[j]]=c;
 }
+res[k]=r;
+   }
   
-    return r;
+    return res;
     
   }
   
