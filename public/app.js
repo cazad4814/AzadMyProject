@@ -1,5 +1,3 @@
-
-  
       
 function fetchAndVisualizeData() {
     fetch("./data.json")
@@ -14,15 +12,6 @@ function fetchAndVisualizeData() {
   var a=formater((data.saveMatchesWonByTeam),n=[]);
   for(team in a){(l={}).name=team,l.data=a[team],n.push(l)}
   visualizeMatchesWonTeam(data.saveMatchesWonByTeam,n);
-
-
-  visualizeExtraRunEachTeam(data.extraRunByeachteam);
-  visualizetopEconomicalBowlers(data.topEconomicalBowlers);
-
-  var b=formater1((data.storyPlayerDetails),n=[]);
-  for(deatials in b){(l={}).name=deatials,l.data=b[deatials],n.push(l)}
-  visualizestoryPlayer(data.storyPlayerDetails,n);
-  
   return;
 }
 
@@ -31,9 +20,7 @@ function formater(e){var t={},a=-1;for(var n in e){for(var i in a++,e[n])
   for(i in t)t[i].length<a+1&&t[i].push(0)}return t}
 
 
-  function formater1(e){var t={},b=-1;for(var n in e){for(var i in b++,e[n])
-  {if(console.log(i),!t.hasOwnProperty(i)){t[i]=[];for(var o=0;o<b;o++)t[i].push(0)}t[i].push(e[n][i])}
-  for(i in t)t[i].length<b+1&&t[i].push(0)}return t}
+  
 
 
 function visualizeMatchesPlayedPerYear(matchesPlayedPerYear) {
@@ -81,7 +68,7 @@ function visualizeMatchesWonTeam(e,t) {
         type: 'column'
     },
     title: {
-        text: '<b>B. Number of matches won by each team over allthe years of IPL</b>'
+        text: '<b>B. Number of matches won by each team over all the years of IPL</b>'
     },
     subtitle: {
         text: 'Source: ipl Dataset'
@@ -113,110 +100,10 @@ function visualizeMatchesWonTeam(e,t) {
 
 
 
-  function visualizeExtraRunEachTeam(extraRunByeachteam) {
-  const seriesData = [];
-  for (let team in extraRunByeachteam) {
-    seriesData.push([team, extraRunByeachteam[team]]);
-  }
 
-  Highcharts.chart("extrarun_each _team", {
-    chart: {
-      type: "column"
-    },
-    title: {
-      text: "<b>C. Extra runs conceded by each team in 2016</b>"
-    },
-    subtitle: {
-      text:
-        'Source: <a href="https://www.kaggle.com/nowke9/ipldata/data">IPL Dataset</a>'
-    },
-    xAxis: {
-      type: "category"
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: "Extra Runs"
-      }
-    },
-    series: [
-      {
-        name:"",
-        data: seriesData
-      }
-    ]
-  });
-      
-}
-
-
-
-function visualizetopEconomicalBowlers(topEconomicalBowlers) {
-
-  //console.log(topEconomicalBowlers);
-  Highcharts.chart("top_economical _bowlers", {
-    chart: {
-      type: "column"
-    },
-    title: {
-      text: "<b>D. Top Economical Bowlers in 2015 season</b>"
-    },
-    subtitle: {
-      text:
-        'Source: <a href="https://www.kaggle.com/nowke9/ipldata/data">IPL Dataset</a>'
-    },
-    xAxis: {
-      type: "category"
-    },
-    yAxis: {
-      min: 0,
-      title: {
-        text: "Economy"
-      }
-    },
-    series: [
-      {
-        name: "Players",
-        data: topEconomicalBowlers
-      }
-    ]
-  });
-      
-
-}
-
-
-
-
-function visualizestoryPlayer(f,y) {
   
-  Highcharts.chart('story-player-details-season', {
-    chart: {
-        type: 'bar'
-    },
-    title: {
-        text: 'E.Player Run Details'
-    },
-    xAxis: {
-      categories:Object.keys(f),crosshair:!0
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Total shot deatils'
-        }
-    },
-    legend: {
-        reversed: true
-    },
-    plotOptions: {
-        series: {
-            stacking: 'normal'
-        }
-    },
-    series: y
 
-  }
-)
-}
- 
+
+
+
+
