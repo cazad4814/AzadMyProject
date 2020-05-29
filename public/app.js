@@ -74,7 +74,8 @@ function visualizeMatchesWonTeam(e,t) {
         text: 'Source: ipl Dataset'
     },
     xAxis: {
-      categories:Object.keys(e),crosshair:!0
+      categories:Object.keys(e),
+      crosshair:!0
     },
     yAxis:{min:0,title:{text:"Matches won"}},
     tooltip: {

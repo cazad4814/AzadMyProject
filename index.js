@@ -10,6 +10,7 @@ const storyplayerdetails=require("./ipl/storyPlayerDetails");
 const MATCHES_FILE_PATH = "./csv_data/matches.csv";
 const DELIVERIES_FILE_PATH = "./csv_data/deliveries.csv";
 const JSON_OUTPUT_FILE_PATH="./public/data.json";
+const JSON_OUTPUT_FILE_PATH_TOPECONOMICAL="./public/topEconomic.json";
   function main(){
     csv()
     .fromFile(MATCHES_FILE_PATH)
@@ -27,7 +28,8 @@ const JSON_OUTPUT_FILE_PATH="./public/data.json";
     //saveMatchesWonByTeam(matchesWon);
    // console.log(matchesWon);
    let result=matchesPlayedYear(matches);
-   saveMatchesPlayedPerYear(result,matchesWon,extra_runs_each_team,topeconomical,story);
+   saveMatchesPlayedPerYear(result,matchesWon,extra_runs_each_team,story);
+   saveTopEconomicalBowlers(topeconomical);
   });
     });
     
@@ -48,12 +50,26 @@ function saveMatchesWonByTeam(matchesWon){
 }
 
 */
-function saveMatchesPlayedPerYear(result,matchesWon,extra_runs_each_team,topeconomical,story){
+function saveMatchesPlayedPerYear(result,matchesWon,extra_runs_each_team,story){
   const jsonData={
-    matchesPlayedPerYear:result,saveMatchesWonByTeam:matchesWon,extraRunByeachteam:extra_runs_each_team,topEconomicalBowlers:topeconomical,storyPlayerDetails:story
+    matchesPlayedPerYear:result,saveMatchesWonByTeam:matchesWon,
+    extraRunByeachteam:extra_runs_each_team,storyPlayerDetails:story
   };
   const jsonString = JSON.stringify(jsonData);
   fs.writeFile(JSON_OUTPUT_FILE_PATH, jsonString, "utf8", err=>{
+    if(err){
+          Console.err(err);
+    }
+  });
+}
+
+
+function saveTopEconomicalBowlers(topeconomical){
+  const jsonData={
+    topEconomicalBowlers:topeconomical
+  };
+  const jsonString = JSON.stringify(jsonData);
+  fs.writeFile(JSON_OUTPUT_FILE_PATH_TOPECONOMICAL, jsonString, "utf8", err=>{
     if(err){
           Console.err(err);
     }

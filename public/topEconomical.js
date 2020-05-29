@@ -1,43 +1,29 @@
 
-
-  function fetchAndVisualizeData() {
-      fetch("./data.json")
-        .then(r => r.json())
-        .then(visualizeData_dynamic1);
-    } 
-    fetchAndVisualizeData();
-    /*
-    function visualizeData_dynamic1(data) {
-    
-    const season = document.getElementById("seasons2").value;
-  
-    visualizetopEconomicalBowlers((data.topEconomicalBowlers)[season]);
-  
-  
-    
-    return;
-  }
-*/
 function showData1(){
   
- const year = parent(document.getElementById("seasons2").value);
-  
- const result = await (await fetch(`https://arcane-wildwood-32573.herokuapp.com/economy?year=${year}`)).json();
- visualizetopEconomicalBowlers(result,year);
+ const seasonT = Number(document.getElementById("seasons2").value);
+fetch('/topEconomic?year='+seasonT)  
+.then((resp) => resp.json())
+.then((response)=>{
+  visualizetopEconomicalBowlers(response);
+  function visualizetopEconomicalBowlers(response) {
+      const seriesData=[];
+      for(let player in response){
+        seriesData.push([player,response[player]]);
+      }
+     seriesData.sort(function(a,b){
+        return a[1]-b[1];
+      });
+      let d=seriesData.slice(0,20);
+      //console.log("hello......"+d);
 
-
-  }
-  
-  function visualizetopEconomicalBowlers(result,year) {
-    //const season = document.getElementById("seasons2").value;
-    //console.log(topEconomicalBowlers);
-    console.log(result);
+    
     Highcharts.chart("top_economical _bowlers", {
       chart: {
         type: "column"
       },
       title: {
-        text: `<b>D. Top Economical Bowlers in ${year} season</b>`
+        text: `<b>D. Top Economical Bowlers in ${seasonT} season</b>`
       },
       subtitle: {
         text:
@@ -55,12 +41,14 @@ function showData1(){
       series: [
         {
           name: "Players",
-          data: result
+          data: d
         }
       ]
     });
         
   
   }
-  
+
+})
+}
   
