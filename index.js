@@ -25,8 +25,7 @@ const JSON_OUTPUT_FILE_PATH_TOPECONOMICAL="./public/topEconomic.json";
   
      
     let matchesWon=matchesWonTeam(matches);   
-    //saveMatchesWonByTeam(matchesWon);
-   // console.log(matchesWon);
+  
    let result=matchesPlayedYear(matches);
    saveMatchesPlayedPerYear(result,matchesWon,extra_runs_each_team,story);
    saveTopEconomicalBowlers(topeconomical);
@@ -36,20 +35,7 @@ const JSON_OUTPUT_FILE_PATH_TOPECONOMICAL="./public/topEconomic.json";
   }
 
 
-/*
-function saveMatchesWonByTeam(matchesWon){
-  const jsonData={
-    matchesWonByteam:matchesWon
-  };
-  const jsonString = JSON.stringify(jsonData);
-  fs.writeFile(JSON_OUTPUT_FILE_PATH, jsonString, "utf8", err=>{
-    if(err){
-          Console.err(err);
-    }
-  });
-}
 
-*/
 function saveMatchesPlayedPerYear(result,matchesWon,extra_runs_each_team,story){
   const jsonData={
     matchesPlayedPerYear:result,saveMatchesWonByTeam:matchesWon,

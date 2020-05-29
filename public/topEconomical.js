@@ -14,8 +14,8 @@ fetch('/topEconomic?year='+seasonT)
      seriesData.sort(function(a,b){
         return a[1]-b[1];
       });
-      let d=seriesData.slice(0,20);
-      //console.log("hello......"+d);
+      let d=seriesData.slice(0,10);
+   
 
     
     Highcharts.chart("top_economical _bowlers", {

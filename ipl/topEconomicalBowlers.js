@@ -40,22 +40,7 @@ function topeconomicalbowlers(deliveries,matches) {
     r[uniqueArray[j]]=economy;
   }
     
-  
-/*
-var sort=[];
 
-for(var i in r){
-  sort.push([i, r[i]]);
-}
-sort.sort(function(a,b){
-  return a[1]-b[1];
-});
-
-let d=sort;
-
-res[k]=d.slice(0,15);
-
-*/
 res[k]=r;
 
    }
